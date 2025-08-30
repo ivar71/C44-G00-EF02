@@ -8,15 +8,30 @@ using System.Threading.Tasks;
 
 namespace EF2.Models
 {
-    internal class Department
+    public class Department
     {
         [Key]
         public int ID { get; set; }
 
-        [Required, StringLength(100)]
+        [Required, MaxLength(100)]
         public string Name { get; set; }
 
+        // Head of Department
+        public int? Ins_ID { get; set; }
+
+        [ForeignKey("Ins_ID")]
+        [InverseProperty("HeadOfDepartments")]
+        public Instructor Head { get; set; }
+
         [Required]
+        [DataType(DataType.Date)]
         public DateTime HiringDate { get; set; }
+
+        [InverseProperty("Department")]
+        public ICollection<Student> Students { get; set; }
+
+        [InverseProperty("Department")]
+        public ICollection<Instructor> Instructors { get; set; }
     }
+
 }

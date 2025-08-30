@@ -4,7 +4,7 @@ using System.Reflection;
 
 namespace EF2.Data
 {
-    internal class DBcontext:DbContext
+    public class DBcontext:DbContext
     {
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
